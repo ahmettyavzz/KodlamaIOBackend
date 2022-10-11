@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HibernateCourseDao implements CourseDao {
 
-    List<Course> categories = new ArrayList<>();
+    List<Course> courses = new ArrayList<>();
 
     @Override
     public void addCourse(Course course) {
@@ -23,11 +23,11 @@ public class HibernateCourseDao implements CourseDao {
 
     @Override
     public void deleteCourse(Course course) {
-        System.out.println(course.getCourseName()+" isimli kurs hibernate ile eklendi.");
+        System.out.println(course.getCourseName()+" isimli kurs hibernate ile silindi.");
     }
 
     @Override
     public List<Course> allCourses() {
-        return null;
+        return courses;
     }
 }
