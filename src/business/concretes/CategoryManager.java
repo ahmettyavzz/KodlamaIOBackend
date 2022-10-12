@@ -9,7 +9,6 @@ import java.util.List;
 public class CategoryManager implements CategoryService {
 
     private CategoryDao categoryDao;
-    private List<Category> categories;
 
 
     public CategoryManager(CategoryDao categoryDao) {
@@ -18,7 +17,11 @@ public class CategoryManager implements CategoryService {
 
     @Override
     public void addCategory(Category category) {
-        categoryDao.addCategory(category);
+        if (categoryNameControl(category)){
+            categoryDao.addCategory(category);
+        }else {
+            System.out.println("Ayni isimde kategori olamaz.");
+        }
     }
 
     @Override
@@ -32,7 +35,18 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
-    public List<Category> allCategories() {
-        return categories;
+    public void allCategories() {
+        for (int i=0;i<categoryDao.allCategories().size();i++){
+            System.out.println(categoryDao.allCategories().get(i).getCategoryName());
+        }
+    }
+
+    private boolean categoryNameControl(Category category){
+        for (Category categoryy: categoryDao.allCategories()) {
+            if (categoryy.getCategoryName()==category.getCategoryName()){
+                return false;
+            }
+        }
+        return true;
     }
 }

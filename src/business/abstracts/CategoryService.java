@@ -10,5 +10,5 @@ public interface CategoryService {
 
     void deleteCategory(Category category);
 
-    List<Category> allCategories();
+    void allCategories();
 }
