@@ -8,14 +8,25 @@ import java.util.List;
 
 public class CourseManager implements CourseService {
     private CourseDao courseDao;
-    private List<Course> courses;
+
+
     public CourseManager(CourseDao courseDao) {
         this.courseDao = courseDao;
     }
 
     @Override
     public void addCourse(Course course) {
-        courseDao.addCourse(course);
+        if (coursePriceControl(course)){
+            if (courseNameControl(course)){
+                courseDao.addCourse(course);
+            }
+            else {
+                System.out.println("Aynı isme ait iki kurs olamaz.");
+            }
+        }else {
+            System.out.println("Kurs fiyatı 0'dan küçük olamaz.");
+        }
+
     }
 
     @Override
@@ -29,7 +40,29 @@ public class CourseManager implements CourseService {
     }
 
     @Override
-    public List<Course> allCourses() {
-        return courses;
+    public void allCourses() {
+
+        for (int i=0;i<courseDao.allCourses().size();i++){
+            System.out.println(courseDao.allCourses().get(i).getCourseName());
+        }
+
+    }
+
+
+    private boolean coursePriceControl(Course course){
+        if(course.getPrice()<0) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean courseNameControl(Course course){
+        for (Course coursee:courseDao.allCourses()) {
+                if (course.getCourseName()==coursee.getCourseName()){
+                    return false;
+                }
+        }
+        return true;
     }
 }

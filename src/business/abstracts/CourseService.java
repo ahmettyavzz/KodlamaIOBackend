@@ -11,6 +11,6 @@ public interface CourseService {
 
     void deleteCourse(Course course);
 
-    List<Course> allCourses();
+    void allCourses();
 }
 
