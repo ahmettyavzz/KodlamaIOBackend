@@ -39,7 +39,7 @@ public class Main {
         CourseService courseManager = new CourseManager(courseDao);
 
         courseManager.deleteCourse(course1);
-   
+
 
 
 }
