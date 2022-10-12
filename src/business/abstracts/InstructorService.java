@@ -11,5 +11,5 @@ public interface InstructorService {
 
     void deleteInstructor(Instructor instructor);
 
-    List<Instructor> allInstructors();
+    void allInstructors();
 }

@@ -32,7 +32,9 @@ public class InstructorManager implements InstructorService {
     }
 
     @Override
-    public List<Instructor> allInstructors() {
-        return instructors;
+    public void allInstructors() {
+        for (int i=0;i<instructorDao.allInstructors().size();i++){
+            System.out.println(instructorDao.allInstructors().get(i).getInstructorName());
+        }
     }
 }
