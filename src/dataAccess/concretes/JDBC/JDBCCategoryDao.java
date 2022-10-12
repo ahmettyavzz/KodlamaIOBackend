@@ -10,6 +10,12 @@ public class JDBCCategoryDao implements CategoryDao {
 
     List<Category> categories = new ArrayList<>();
 
+    public JDBCCategoryDao() {
+        Category category1=new Category(1l,"Java",null);
+        Category category2=new Category(1l,"C#",null);
+        categories.add(category1);
+        categories.add(category2);
+    }
 
     @Override
     public void addCategory(Category category) {
